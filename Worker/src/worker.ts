@@ -86,3 +86,12 @@ const start = async () => {
 }
 
 start()
+
+
+////////////////////////////////////////////////////////////
+// Dummy HTTP server so that deploy as webservice doesnt end cause of no port
+import http from 'http'
+const PORT = process.env.PORT || 3001 // for auto render port
+http.createServer((_, res) => res.end('Worker running')).listen(PORT, () => {
+  console.log(`[Worker] Health check server on port ${PORT}`)
+})
