@@ -6,6 +6,8 @@ Built this as a portfolio project to get proper hands-on experience with async w
 
 **Live demo:** https://task-flow-ivory-phi.vercel.app
 
+![CI](https://github.com/Atin-Thappa/TaskFlow/actions/workflows/backend-ci.yml/badge.svg)
+
 ---
 
 ## What it does
@@ -45,6 +47,8 @@ Express API  →  Redis (BullMQ Queue)
 
 The API and worker are completely decoupled. The API just validates the webhook request, creates an execution record, and drops a job into the queue. The worker handles everything else — it doesn't care where the job came from. This means you could scale workers independently, add retry logic, or swap out the queue entirely without touching the API.
 
+The backend is also split into `app.ts` (middleware, routes) and `server.ts` (DB connection, listen) so the app can be imported cleanly in tests without starting the server.
+
 ---
 
 ## Tech Stack
@@ -72,6 +76,14 @@ The API and worker are completely decoupled. The API just validates the webhook 
 - Backend + Worker → Render
 - Database → MongoDB Atlas
 - Queue → Upstash Redis
+
+---
+
+## Testing & CI
+
+Integration tests cover the webhook trigger flow — seeding a mock workflow into a test database and asserting correct status codes for both valid and non-existent webhooks.
+
+CI runs on every push to `Backend/**` via GitHub Actions, spinning up real MongoDB and Redis service containers. Can also be triggered manually from the Actions tab.
 
 ---
 
