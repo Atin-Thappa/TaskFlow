@@ -18,6 +18,19 @@ Built this as a portfolio project to get proper hands-on experience with async w
 
 ---
 
+## Demo
+
+**1. Build a workflow using the visual node editor**
+![Workflow Builder](assets/builder.png)
+
+**2. Fire the webhook from anything — Postman, curl, another service**
+![Webhook Trigger](assets/webhook.png)
+
+**3. Execution logs update with status, duration and action outputs**
+![Execution Logs](assets/logs.png)
+
+---
+
 ## Architecture
 
 The system is split into three separate processes intentionally:
